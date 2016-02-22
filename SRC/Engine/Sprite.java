@@ -13,14 +13,10 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 /**
  * Created by FlyOfFly on 18.02.2016 in Game-Engine-Strange-2D.
  */
-public class Sprite {
-    Rectangle sprRect;
-
-    Color color;
+public class Sprite extends RenderObject{
     Texture texture;
     public Sprite(Rectangle sprRect,String path, Color color){
-        this.sprRect = sprRect;
-        this.color = color;
+        super(color,sprRect,null);
          if(!path.isEmpty())  texture = new Texture(path);
         else texture = null;
     }
@@ -31,30 +27,22 @@ public class Sprite {
         this(sprRect,"",color);
     }
 
+    public Sprite(Rectangle sprRect){
+        this(sprRect,"", Color.white);
+    }
+
     public void setColor(Color color){
         this.color = color;
     }
 
-    public Sprite(Rectangle sprRect){
-        this(sprRect,"", Color.white);
-    }
     public void setTexture(Texture texture){
         this.texture = texture;
     }
     public void setTexture(String path){
         texture = new Texture(path);
     }
-    public boolean isClicked(){
-        if(Input.getMouseDown(0)){
-            Vector2f mousepos = Input.getMousePos();
-            if(mousepos.x <=sprRect.x+sprRect.width && mousepos.x >=sprRect.x &&
-                    mousepos.y <=sprRect.y+sprRect.height && mousepos.y >=sprRect.y ){
-                System.out.println("Clicked");
-                return true;
-            }
-        }
-        return false;
-    }
+
+    @Override
     public void draw(){
         if(texture!=null) {
 
@@ -66,13 +54,13 @@ public class Sprite {
 
         glColor3f(color.getR(),color.getG(),color.getB());
         glTexCoord2f(0,0);
-        glVertex2f(sprRect.x,sprRect.y);
+        glVertex2f(getPos().x,getPos().y);
         glTexCoord2f(1,0);
-        glVertex2f(sprRect.x+sprRect.width,sprRect.y);
+        glVertex2f(getPos().x+getSize().x,getPos().y);
         glTexCoord2f(1,1);
-        glVertex2f(sprRect.x+sprRect.width,sprRect.y+ sprRect.height);
+        glVertex2f(getPos().x+getSize().x,getPos().y+ getSize().y);
         glTexCoord2f(0,1);
-        glVertex2f(sprRect.x,sprRect.y+ sprRect.height);
+        glVertex2f(getPos().x,getPos().y+ getSize().y);
         glEnd();
         if(texture!=null){
             GL11.glDisable(GL11.GL_TEXTURE_2D);

@@ -1,26 +1,26 @@
 package Game;
 
-import Engine.Color;
-import Engine.Rectangle;
-import Engine.Sprite;
-import Engine.Vector2f;
+import Engine.*;
 
 /**
  * Created by FlyOfFly on 18.02.2016 in Game-Engine-Strange-2D.
  */
 public class Figure {
     Sprite sprite;
-    Sprite spriteback;
+    Button spriteback;
     public static enum Figures{
         none,
         cross,
         sphere
     };
     private Figures fig;
-    public Figure(Vector2f pos){
-        spriteback = new Sprite(new Rectangle(pos.x,pos.y,64,64), Color.grey);
-         sprite = new Sprite(new Rectangle(pos.x,pos.y,64,64), Color.white);
+    public Figure(Vector2f pos,RenderObject obj){
+        spriteback = new Button(new Rectangle(pos.x,pos.y,64,64), Color.grey);
+         sprite = new Sprite(new Rectangle(0,0,64,64), Color.white);
+        sprite.setParent(spriteback);
+        //sprite.setScale(new Vector2f(2,1));
         fig = Figures.none;
+        spriteback.setParent(obj);
     }
     public void draw(){
         spriteback.draw();
@@ -34,7 +34,7 @@ public class Figure {
 
     public boolean ClickedUpdate(Figures figur){
         if(this.fig==Figures.none) {
-            if (sprite.isClicked()) {
+            if (spriteback.isClicked()) {
                 if(figur == Figures.cross) {
                     sprite.setTexture("cross.png");
                 }

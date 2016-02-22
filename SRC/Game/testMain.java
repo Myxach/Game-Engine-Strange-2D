@@ -7,6 +7,6 @@ import Engine.*;
  */
 public class testMain {
     public static void main(String[] args) {
-        new MainEngine(new testGame()).start();
+        new Core(new testGame()).start();
     }
 }

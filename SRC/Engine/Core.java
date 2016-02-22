@@ -9,10 +9,10 @@ import static org.lwjgl.opengl.GL11.*;
  * Created by FlyOfFly on 18.02.2016 in 16:13.
  */
 
-public class MainEngine {
+public class Core {
     private Game game;
     private boolean isRun;
-    public MainEngine(Game game){
+    public Core(Game game){
         isRun = false;
         Window.CreateWindow(800,600,"Test");
         this.game = game;
@@ -58,14 +58,14 @@ public class MainEngine {
 
             next_game_tick+=skip_ticks;
             sleepTime=next_game_tick-(Time.getTime()*1000);
-            if(sleepTime>=0) {
-                try {
-                    Thread.sleep((long) (sleepTime));
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+//            if(sleepTime>=0) {
+//                try {
+//                    Thread.sleep((long) (sleepTime));
+//
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
         }
     }
 
