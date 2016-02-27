@@ -39,7 +39,7 @@ public class Sprite extends RenderObject{
         this.texture = texture;
     }
     public void setTexture(String path){
-        texture = new Texture(path);
+        this.setTexture(new Texture(path));
     }
 
     @Override

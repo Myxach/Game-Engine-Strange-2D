@@ -1,7 +1,6 @@
 package Engine;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL30;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -33,7 +32,7 @@ public class Core {
         isRun = true;
         double contdTime = 0;
        double sleepTime = 0;
-        double delta = 0;
+        double delta;
         double next_game_tick = Time.getTime()*1000;
         int fps = 0;
         glEnable(GL11.GL_BLEND);

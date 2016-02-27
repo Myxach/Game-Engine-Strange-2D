@@ -12,25 +12,26 @@ public class Color {
 	public static final Color magenta = new Color(1.0f,0,1.0f);
 	public static final Color gray = new Color(0.5f,0.5f,0.5f);
 	public static final  Color grey = gray;
+	public static final double Gamma = 2f;
 	public Color(int r, int g, int b){
+		this.r = r/255;
+		this.g= g/255;
+		this.b = b/255;
+	}
+	public Color(float r, float g, float b){
 		this.r = r;
 		this.g= g;
 		this.b = b;
 	}
-	public Color(float r, float g, float b){
-		this.r = r*255;
-		this.g= g*255;
-		this.b = b*255;
-	}
 	public float getR(){
-		return r/255;
+		return (float)Math.pow(r,(float)Gamma);
 	}
 
 	public float getG(){
-		return g/255;
+		return (float)Math.pow(g,(float)Gamma);
 	}
 
 	public float getB(){
-		return b/255;
+		return (float)Math.pow(b,(float)Gamma);
 	}
 }

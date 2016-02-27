@@ -15,12 +15,13 @@ public class Figure {
     };
     private Figures fig;
     public Figure(Vector2f pos,RenderObject obj){
-        spriteback = new Button(new Rectangle(pos.x,pos.y,64,64), Color.grey);
+        spriteback = new Button(new Rectangle(Window.getWidth()/2-pos.x,Window.getHeight()/2-pos.y,64,64), Color.grey);
          sprite = new Sprite(new Rectangle(0,0,64,64), Color.white);
         sprite.setParent(spriteback);
         //sprite.setScale(new Vector2f(2,1));
         fig = Figures.none;
         spriteback.setParent(obj);
+        spriteback.setAnchor(new Vector2f(0.5f,0.5f));
     }
     public void draw(){
         spriteback.draw();
