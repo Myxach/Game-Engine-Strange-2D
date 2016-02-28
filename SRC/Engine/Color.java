@@ -36,7 +36,7 @@ public class Color {
 		this.b = b;
 		this.alpha = alpha;
 	}
-	enum BlendType{
+	public static enum BlendType{
 		Alpha,
 		Additive,
 		Multiplicative,
